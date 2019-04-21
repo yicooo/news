@@ -14,34 +14,20 @@ def index(request):
     if form.is_valid():
         form.save()
         form = articleForm()
-          
-    # url = "https://newsapi.org/v2/top-headlines?sources={}&apiKey={}".format(source,api)
-
-    # response = requests.get(url)
-
-    # jsondict = response.json()
-
-    # newstitle = jsondict['articles'][2]['title']
-
-
 
     context = {
 
         'form' : form,
-        #'title'    : title,
-        # 'newstitle': newstitle,
-        #'source'   : source
 
     }
-    
     
     return render(request,"home.html",context)
 
 def create(request):
 
-    title = 'selam'
+    title = 'Searched Source'
     source = request.GET.get('q',' ')
-    newstitle = 'selam'
+    newstitle = '?'
 
     url = "https://newsapi.org/v2/top-headlines?sources={}&apiKey={}".format(source,api)
 
