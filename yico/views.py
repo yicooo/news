@@ -9,21 +9,28 @@ api = "a261b0143330491ba79352a9cb4a0f29"
 
 def index(request):
 
-    form = articleForm(request.POST)
+    form = articleForm(request.POST or None)
 
     if form.is_valid():
         form.save()
         form = articleForm()
+          
+    # url = "https://newsapi.org/v2/top-headlines?sources={}&apiKey={}".format(source,api)
 
-        title   = request.POST.get('title')
-        source  = request.POST.get('source')
+    # response = requests.get(url)
 
-        article.title   = title
-        article.source  = source   
+    # jsondict = response.json()
+
+    # newstitle = jsondict['articles'][2]['title']
+
+
 
     context = {
 
-        'form' : form
+        'form' : form,
+        #'title'    : title,
+        # 'newstitle': newstitle,
+        #'source'   : source
 
     }
     
@@ -32,10 +39,9 @@ def index(request):
 
 def create(request):
 
-    obj = article.objects.get(title = 'yico')
-    
-    title    = obj.title
-    source   = obj.source
+    title = 'selam'
+    source = request.GET.get('q',' ')
+    newstitle = 'selam'
 
     url = "https://newsapi.org/v2/top-headlines?sources={}&apiKey={}".format(source,api)
 
@@ -43,13 +49,14 @@ def create(request):
 
     jsondict = response.json()
 
-    # newstitle = jsondict['articles'][2]['title']
+    newstitle = jsondict['articles'][2]['title']
 
     context = {
 
-        'title'    : title,
-        # 'newstitle': newstitle,
-        'source'   : source
+        'title'     : title,
+        'source'    : source,
+        'newstitle' : newstitle
+        
     }
 
 
