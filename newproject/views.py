@@ -4,6 +4,7 @@ import json
 from django.http import HttpResponse
 from .models import article
 from .forms import articleForm
+from newsapi import NewsApiClient
 api = "a261b0143330491ba79352a9cb4a0f29"
 
 
@@ -15,9 +16,15 @@ def index(request):
         form.save()
         form = articleForm()
 
+
+    newsapi = NewsApiClient(api_key=api)
+
+    sources = newsapi.get_sources()
+
     context = {
 
-        'form' : form,
+        'sources'   : sources['sources'],
+        'form'      : form,
 
     }
     

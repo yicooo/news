@@ -10,15 +10,23 @@
  
 </form> -->
 
+<p>Write some source names to get top headline</p>
+
 <form action='search' method='GET'> 
    
     <input type='text' name ='q' placeholder="search "/>
     <input type='submit' value='Save' />
  
  
-  </form>
+</form>
 
+<h1>Available Sources Are: </h1>
 
+<li>
+{%for i in sources%}
+  <ul> {{i.id}} </ul>
+{%endfor%}
+</li>
 
 <h1>{{ title }}</h1>
 <p>{{source}}</p>
