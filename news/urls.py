@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
-    path('', include('yico.urls')),
-    path('create/',include('yico.urls')),
+    path('', include('newproject.urls')),
+    path('create/',include('newproject.urls')),
     path('admin/', admin.site.urls),
 ]
